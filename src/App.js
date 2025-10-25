@@ -404,16 +404,20 @@ const CreditsModal = ({ setShowCredits }) => (
   </div>
 );
 
-const Footer = ({ setShowCredits }) => (
-  <footer className="fixed bottom-0 left-0 right-0 bg-gray-900 text-center py-3 text-sm text-gray-500 z-20">
-    Crafted with ❤️ by{' '}
-    <button onClick={() => setShowCredits(true)} className="font-semibold text-blue-500 hover:text-blue-400 hover:underline">
-      Jinsu J
-    </button>
-    {' · '} {new Date().getFullYear()}
-  </footer>
-);
-
+// --- UPDATED FOOTER COMPONENT ---
+const Footer = ({ setShowCredits }) => {
+    const currentYear = new Date().getFullYear();
+    return (
+        <footer className="fixed bottom-0 left-0 right-0 bg-gray-900 text-center py-3 text-sm text-gray-500 z-20">
+             © {currentYear} · Build with{' '}
+             {/* Added animate-pulse for a glowing effect */}
+            <span aria-label="love" className="text-red-400 inline-block animate-pulse">❤️</span> by{' '}
+            <button onClick={() => setShowCredits(true)} className="font-semibold text-blue-500 hover:text-blue-400 hover:underline">
+                Jinsu J
+            </button>
+        </footer>
+    );
+};
 /* ═══════════════════════════════════════════════════════════
    6. HEADER COMPONENT - FIXED PROFILE PICTURE UPDATE
    ═══════════════════════════════════════════════════════════ */
