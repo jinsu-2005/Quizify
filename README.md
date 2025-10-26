@@ -1,70 +1,190 @@
-# Getting Started with Create React App
+Quizify - AI Quiz Generator 🧠✨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Quizify is a modern web application that leverages the power of Google's Gemini AI to generate dynamic quizzes based on user-provided topics or uploaded text documents. Built with React, Firebase, and Netlify, it offers a seamless and interactive learning experience.
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7e71662a-178b-40c2-a3f4-2214498e30bb/deploy-status)](https://app.netlify.com/projects/jinsu-quizify-ai/deploys)
 
-In the project directory, you can run:
+Live Deployed Site: https://jinsu-quizify-ai.netlify.app
 
-### `npm start`
+Features 🚀
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+AI-Powered Quiz Generation: Uses Google Gemini AI to create quizzes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Multiple Input Modes:
 
-### `npm test`
+Generate quizzes from any Topic.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Generate quizzes directly from uploaded Text Files (.txt, .csv).
 
-### `npm run build`
+Customizable Quizzes:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Number of Questions (1-100)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Choices per Question (2-10)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Difficulty Levels (Easy, Moderate, Hard)
 
-### `npm run eject`
+Flexible Timer Options:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Set time limit per question (seconds).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Set time limit for the entire quiz (minutes).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Option to have no timer.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+User Authentication:
 
-## Learn More
+Email/Password signup and login.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Social Login via Google & GitHub.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Anonymous Guest Mode.
 
-### Code Splitting
+User Profiles:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+View quiz statistics (total taken, average score).
 
-### Analyzing the Bundle Size
+Upload custom profile pictures.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Quiz History & Review:
 
-### Making a Progressive Web App
+Stores history of completed quizzes for logged-in users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Detailed review page showing each question, options, the correct answer, and the user's answer.
 
-### Advanced Configuration
+Creator Credits: Includes a dedicated section recognizing the developer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+PWA Ready: Can be "installed" on devices as a Progressive Web App.
 
-### Deployment
+Modern UI: Dark theme built with Tailwind CSS.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Tech Stack 🛠️
 
-### `npm run build` fails to minify
+Frontend: React (Create React App with CRACO override), Tailwind CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Backend: Netlify Functions (Serverless Node.js)
+
+AI: Google Gemini API
+
+Authentication: Firebase Authentication
+
+Database: Firebase Firestore
+
+Deployment: Netlify
+
+Getting Started 🏁
+
+Follow these steps to set up and run the project locally.
+
+Prerequisites
+
+Node.js (v18 or later recommended)
+
+npm (comes with Node.js)
+
+Git
+
+Firebase Account
+
+Google Cloud Account (for Gemini API Key with Billing Enabled)
+
+Netlify Account
+
+Installation & Setup
+
+Clone the Repository:
+
+git clone [https://github.com/jinsu-2005/quizify.git](https://github.com/jinsu-2005/quizify.git)
+cd quizify
+
+
+Install Frontend Dependencies:
+
+npm install
+
+
+Install Backend Dependencies:
+
+cd netlify/functions
+npm install busboy node-fetch@2
+cd ../..
+
+
+Firebase Configuration:
+
+Go to your Firebase project settings.
+
+Register a Web App.
+
+Copy the firebaseConfig object.
+
+Paste it into the firebaseConfig variable at the top of src/App.jsx.
+
+Enable Services: In the Firebase Console, ensure you have enabled:
+
+Authentication (Email/Password, Google, GitHub, Anonymous providers)
+
+Firestore Database (Create database, set production rules - see firestore.rules example in project setup steps).
+
+Authentication Settings: Go to Authentication -> Settings -> Authorized domains and add localhost. Set "User account linking" to "Link accounts that use the same email".
+
+Google Cloud Configuration:
+
+Ensure you have a Google Cloud project linked to Firebase.
+
+Go to "APIs & Services" -> Library and Enable the "Generative Language API" and "Cloud Firestore API".
+
+Go to "Billing" and ensure your project is linked to a Billing Account (required for API usage from servers, even within free tier).
+
+Go to "APIs & Services" -> Credentials -> Create/Get your Gemini API Key.
+
+Go to "APIs & Services" -> OAuth consent screen. Configure it (App name, emails), add Scopes (userinfo.email, userinfo.profile, openid), and Publish the app.
+
+Netlify & Environment Variables:
+
+Create a file named .env in the root of your project (quizify/.env).
+
+Add your secret Gemini API key to this file:
+
+GEMINI_API_KEY=AIzaSy...YourSecretKey...
+
+
+Running Locally
+
+Use the Netlify CLI to run the full application (frontend + backend functions):
+
+netlify dev
+
+
+Open your browser to http://localhost:8888 (or the address provided by the command).
+
+Deployment 🚀
+
+This project is configured for easy deployment via Netlify.
+
+Connect to GitHub (if not already done): Follow the Git steps (git init, git add, git commit, create repo on GitHub, git remote add, git push).
+
+Link Netlify: Run netlify init and connect to your GitHub repository. Configure build settings (command: npm run build, directory: build, functions: netlify/functions).
+
+Set Environment Variable: Crucially, go to your Netlify site dashboard -> Site configuration -> Build & deploy -> Environment variables. Add your GEMINI_API_KEY with its secret value.
+
+Push to Deploy: Whenever you push changes to your GitHub repository's main branch, Netlify will automatically build and deploy the update.
+
+git add .
+git commit -m "Deploy latest changes"
+git push
+
+
+Creator 👨‍💻
+
+This project was built with ❤️ by Jinsu J.
+
+Studies: 3rd Year B.Tech, Information Technology
+
+GitHub: jinsu-2005
+
+LinkedIn: Jinsu .J
+
+Email: jinsu.j2005@gmail.com
+
+Project Started: October 2025
