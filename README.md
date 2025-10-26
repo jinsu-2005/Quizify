@@ -1,8 +1,21 @@
 <h1 align="center">Quizify - AI Quiz Generator 🧠✨</h1>
 
 <p align="center">
-  <b>A modern AI-powered quiz generator built using Google's Gemini AI</b><br/>
-  <i>Generate smart quizzes instantly from any topic or uploaded text!</i>
+  <b>Generate smart, AI-powered quizzes instantly using Google's Gemini AI</b><br/>
+  <i>Built with React, Firebase, and Netlify — a next-gen learning experience!</i>
+</p>
+
+<p align="center">
+  <a href="https://github.com/jinsu-2005/quizify">
+    <img src="https://img.shields.io/github/stars/jinsu-2005/quizify?style=flat&logo=github" alt="GitHub Stars"/>
+  </a>
+  <a href="https://github.com/jinsu-2005/quizify">
+    <img src="https://img.shields.io/github/license/jinsu-2005/quizify" alt="License"/>
+  </a>
+  <img src="https://img.shields.io/badge/Framework-React-blue?logo=react"/>
+  <img src="https://img.shields.io/badge/Backend-Netlify%20Functions-brightgreen?logo=netlify"/>
+  <img src="https://img.shields.io/badge/AI-Google%20Gemini-orange?logo=google"/>
+  <img src="https://img.shields.io/badge/Database-Firebase-yellow?logo=firebase"/>
 </p>
 
 <p align="center">
@@ -14,6 +27,19 @@
 <p align="center">
   🔗 <b>Live Site:</b> <a href="https://jinsu-quizify-ai.netlify.app">https://jinsu-quizify-ai.netlify.app</a>
 </p>
+
+---
+
+## 🧭 Table of Contents
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🏁 Getting Started](#-getting-started)
+- [⚙️ Installation & Setup](#️-installation--setup)
+- [🔥 Firebase Configuration](#-firebase-configuration)
+- [☁️ Google Cloud Configuration](#️-google-cloud-configuration)
+- [🌍 Netlify & Environment Variables](#-netlify--environment-variables)
+- [🚀 Deployment](#-deployment-netlify)
+- [👨‍💻 Creator](#-creator)
 
 ---
 
