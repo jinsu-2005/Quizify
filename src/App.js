@@ -370,7 +370,7 @@ const AuthForm = ({ isLogin, setPage }) => {
 const CreditsModal = ({ setShowCredits }) => (
   <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 animate-fade-in p-4" onClick={() => setShowCredits(false)}>
     <div className="bg-gray-800 text-white rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-auto text-center transform transition-all" onClick={(e) => e.stopPropagation()}>
-      <img src="/my-pic.png" alt="Jinsu J" className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 border-blue-500 object-cover bg-gray-700" onError={(e) => { e.target.style.display = 'none'; }} />
+      <img src="/my-pic.webp" alt="Jinsu J" className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 border-blue-500 object-cover bg-gray-700" onError={(e) => { e.target.style.display = 'none'; }} />
       <h2 className="text-2xl sm:text-3xl font-bold">Jinsu J</h2>
       <p className="text-blue-400 font-semibold text-sm sm:text-base">3rd Year B.Tech, Information Technology</p>
       <p className="text-gray-400 mt-2 text-xs sm:text-sm">Project Creation: October 2025</p>
