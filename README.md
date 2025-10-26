@@ -1,190 +1,204 @@
-Quizify - AI Quiz Generator 🧠✨
+<h1 align="center">Quizify - AI Quiz Generator 🧠✨</h1>
 
-Quizify is a modern web application that leverages the power of Google's Gemini AI to generate dynamic quizzes based on user-provided topics or uploaded text documents. Built with React, Firebase, and Netlify, it offers a seamless and interactive learning experience.
+<p align="center">
+  <b>A modern AI-powered quiz generator built using Google's Gemini AI</b><br/>
+  <i>Generate smart quizzes instantly from any topic or uploaded text!</i>
+</p>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7e71662a-178b-40c2-a3f4-2214498e30bb/deploy-status)](https://app.netlify.com/projects/jinsu-quizify-ai/deploys)
+<p align="center">
+  <a href="https://app.netlify.com/projects/jinsu-quizify-ai/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/7e71662a-178b-40c2-a3f4-2214498e30bb/deploy-status" alt="Netlify Status"/>
+  </a>
+</p>
 
-Live Deployed Site: https://jinsu-quizify-ai.netlify.app
+<p align="center">
+  🔗 <b>Live Site:</b> <a href="https://jinsu-quizify-ai.netlify.app">https://jinsu-quizify-ai.netlify.app</a>
+</p>
 
-Features 🚀
+---
 
-AI-Powered Quiz Generation: Uses Google Gemini AI to create quizzes.
+## ✨ Features
 
-Multiple Input Modes:
+### 🚀 AI-Powered Quiz Generation
+- Uses **Google Gemini AI** to create context-aware quizzes.
 
-Generate quizzes from any Topic.
+### 🧾 Multiple Input Modes
+- Generate quizzes from any **topic**.
+- Upload **text files (.txt, .csv)** to auto-generate questions.
 
-Generate quizzes directly from uploaded Text Files (.txt, .csv).
+### ⚙️ Customizable Quizzes
+- **Number of Questions:** 1–100  
+- **Choices per Question:** 2–10  
+- **Difficulty Levels:** Easy, Moderate, Hard  
 
-Customizable Quizzes:
+### ⏰ Flexible Timer Options
+- Time per question *(seconds)*  
+- Time for entire quiz *(minutes)*  
+- Option for **no timer**
 
-Number of Questions (1-100)
+### 🔐 User Authentication
+- Email/Password signup & login  
+- Social Login via **Google** & **GitHub**  
+- **Guest Mode** (no login required)
 
-Choices per Question (2-10)
+### 👤 User Profiles
+- View quiz stats *(total quizzes, average score)*  
+- Upload custom profile picture
 
-Difficulty Levels (Easy, Moderate, Hard)
+### 🧠 Quiz History & Review
+- Stores completed quizzes for logged-in users  
+- Review answers: correct vs selected  
 
-Flexible Timer Options:
+### ❤️ Creator Credits
+- Dedicated section recognizing the developer
 
-Set time limit per question (seconds).
+### 📱 PWA Ready
+- Installable Progressive Web App
 
-Set time limit for the entire quiz (minutes).
+### 🎨 Modern UI
+- Dark theme using **Tailwind CSS**
 
-Option to have no timer.
+---
 
-User Authentication:
+## 🛠️ Tech Stack
 
-Email/Password signup and login.
+| Component | Technology |
+|------------|-------------|
+| **Frontend** | React (CRA + CRACO), Tailwind CSS |
+| **Backend** | Netlify Functions (Serverless Node.js) |
+| **AI Integration** | Google Gemini API |
+| **Authentication** | Firebase Authentication |
+| **Database** | Firebase Firestore |
+| **Deployment** | Netlify |
 
-Social Login via Google & GitHub.
+---
 
-Anonymous Guest Mode.
-
-User Profiles:
-
-View quiz statistics (total taken, average score).
-
-Upload custom profile pictures.
-
-Quiz History & Review:
-
-Stores history of completed quizzes for logged-in users.
-
-Detailed review page showing each question, options, the correct answer, and the user's answer.
-
-Creator Credits: Includes a dedicated section recognizing the developer.
-
-PWA Ready: Can be "installed" on devices as a Progressive Web App.
-
-Modern UI: Dark theme built with Tailwind CSS.
-
-Tech Stack 🛠️
-
-Frontend: React (Create React App with CRACO override), Tailwind CSS
-
-Backend: Netlify Functions (Serverless Node.js)
-
-AI: Google Gemini API
-
-Authentication: Firebase Authentication
-
-Database: Firebase Firestore
-
-Deployment: Netlify
-
-Getting Started 🏁
+## 🏁 Getting Started
 
 Follow these steps to set up and run the project locally.
 
-Prerequisites
+### ✅ Prerequisites
+- Node.js (v18 or later)
+- npm (comes with Node.js)
+- Git
+- Firebase Account
+- Google Cloud Account *(Gemini API Key with Billing Enabled)*
+- Netlify Account
 
-Node.js (v18 or later recommended)
+---
 
-npm (comes with Node.js)
+## ⚙️ Installation & Setup
 
-Git
-
-Firebase Account
-
-Google Cloud Account (for Gemini API Key with Billing Enabled)
-
-Netlify Account
-
-Installation & Setup
-
-Clone the Repository:
-
-git clone [https://github.com/jinsu-2005/quizify.git](https://github.com/jinsu-2005/quizify.git)
+### 1️⃣ Clone the Repository
+```
+git clone https://github.com/jinsu-2005/quizify.git
 cd quizify
+```
 
-
-Install Frontend Dependencies:
-
+### 2️⃣ Install Frontend Dependencies
+```
 npm install
+```
 
-
-Install Backend Dependencies:
-
+### 3️⃣ Install Backend Dependencies
+```
 cd netlify/functions
 npm install busboy node-fetch@2
 cd ../..
+```
 
+---
 
-Firebase Configuration:
+## 🔥 Firebase Configuration
 
-Go to your Firebase project settings.
+1. Go to your **Firebase project settings** → Register a **Web App**.  
+2. Copy the `firebaseConfig` object.  
+3. Paste it into the `firebaseConfig` variable in **src/App.jsx**.  
+4. Enable these Firebase services:
+   - **Authentication** (Email/Password, Google, GitHub, Anonymous)
+   - **Firestore Database**
 
-Register a Web App.
+**Authentication Settings:**
+- Add `localhost` under *Authorized domains*.
+- Set *User account linking* → “Link accounts that use the same email”.
 
-Copy the firebaseConfig object.
+---
 
-Paste it into the firebaseConfig variable at the top of src/App.jsx.
+## ☁️ Google Cloud Configuration
 
-Enable Services: In the Firebase Console, ensure you have enabled:
+1. Link your Firebase project to **Google Cloud**.  
+2. Enable APIs:
+   - Generative Language API  
+   - Cloud Firestore API  
+3. Link your project to a **Billing Account**.  
+4. Generate your **Gemini API Key** under  
+   *APIs & Services → Credentials → Create API Key*.  
+5. Configure **OAuth consent screen** → Add required scopes and publish.
 
-Authentication (Email/Password, Google, GitHub, Anonymous providers)
+---
 
-Firestore Database (Create database, set production rules - see firestore.rules example in project setup steps).
+## 🌍 Netlify & Environment Variables
 
-Authentication Settings: Go to Authentication -> Settings -> Authorized domains and add localhost. Set "User account linking" to "Link accounts that use the same email".
-
-Google Cloud Configuration:
-
-Ensure you have a Google Cloud project linked to Firebase.
-
-Go to "APIs & Services" -> Library and Enable the "Generative Language API" and "Cloud Firestore API".
-
-Go to "Billing" and ensure your project is linked to a Billing Account (required for API usage from servers, even within free tier).
-
-Go to "APIs & Services" -> Credentials -> Create/Get your Gemini API Key.
-
-Go to "APIs & Services" -> OAuth consent screen. Configure it (App name, emails), add Scopes (userinfo.email, userinfo.profile, openid), and Publish the app.
-
-Netlify & Environment Variables:
-
-Create a file named .env in the root of your project (quizify/.env).
-
-Add your secret Gemini API key to this file:
-
+Create a `.env` file in your root directory:
+```
 GEMINI_API_KEY=AIzaSy...YourSecretKey...
+```
 
-
-Running Locally
-
-Use the Netlify CLI to run the full application (frontend + backend functions):
-
+Run the app locally:
+```
 netlify dev
+```
 
+Then open 👉 **http://localhost:8888**
 
-Open your browser to http://localhost:8888 (or the address provided by the command).
+---
 
-Deployment 🚀
+## 🚀 Deployment (Netlify)
 
-This project is configured for easy deployment via Netlify.
+### 1️⃣ Connect GitHub
+```
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/jinsu-2005/quizify.git
+git push -u origin main
+```
 
-Connect to GitHub (if not already done): Follow the Git steps (git init, git add, git commit, create repo on GitHub, git remote add, git push).
+### 2️⃣ Link Netlify
+```
+netlify init
+```
+- **Build command:** `npm run build`  
+- **Publish directory:** `build`  
+- **Functions directory:** `netlify/functions`
 
-Link Netlify: Run netlify init and connect to your GitHub repository. Configure build settings (command: npm run build, directory: build, functions: netlify/functions).
+### 3️⃣ Set Environment Variables
+Go to  
+`Netlify → Site configuration → Build & deploy → Environment variables`  
+Add your `GEMINI_API_KEY`.
 
-Set Environment Variable: Crucially, go to your Netlify site dashboard -> Site configuration -> Build & deploy -> Environment variables. Add your GEMINI_API_KEY with its secret value.
-
-Push to Deploy: Whenever you push changes to your GitHub repository's main branch, Netlify will automatically build and deploy the update.
-
+### 4️⃣ Push to Deploy
+```
 git add .
 git commit -m "Deploy latest changes"
 git push
+```
 
+---
 
-Creator 👨‍💻
+## 👨‍💻 Creator
 
-This project was built with ❤️ by Jinsu J.
+| Detail | Info |
+|--------|------|
+| **Name** | Jinsu J |
+| **Role** | Developer & Student (3rd Year B.Tech IT) |
+| **GitHub** | [jinsu-2005](https://github.com/jinsu-2005) |
+| **LinkedIn** | Jinsu .J |
+| **Email** | jinsu.j2005@gmail.com |
+| **Project Started** | October 2025 |
 
-Studies: 3rd Year B.Tech, Information Technology
+---
 
-GitHub: jinsu-2005
-
-LinkedIn: Jinsu .J
-
-Email: jinsu.j2005@gmail.com
-
-Project Started: October 2025
+<p align="center">
+  Built with ❤️ by <b>Jinsu J</b> — Empowering Learning with AI 🚀
+</p>
