@@ -244,40 +244,41 @@ const AuthForm = ({ isLogin, setPage }) => {
     setLoading(false);
   };
 
-  const handleSocialLogin = async (provider) => {
-    setError('');
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      
-      // Check if user profile exists in Firestore
-      const userDocRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userDocRef);
-      
-      // Create or update profile with Google/GitHub photo
-      if (!userDoc.exists()) {
-        await setDoc(userDocRef, {
-          email: user.email,
-          displayName: user.displayName || user.email.split('@')[0],
-          photoURL: user.photoURL, // Store Google/GitHub profile picture
-          createdAt: serverTimestamp(),
-          totalQuizzes: 0,
-          averageScore: 0,
+const handleSocialLogin = async (provider) => {
+  setError('');
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    // Check if user profile exists in Firestore
+    const userDocRef = doc(db, 'users', user.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+      // First login/registration: use Google/GitHub photoURL (if present)
+      await setDoc(userDocRef, {
+        email: user.email,
+        displayName: user.displayName || user.email.split('@')[0],
+        photoURL: user.photoURL || '', // save OAuth photo (null fallback to empty string)
+        createdAt: serverTimestamp(),
+        totalQuizzes: 0,
+        averageScore: 0,
+      });
+    } else {
+      // Only update displayName if changed, NEVER overwrite photoURL!
+      const existingData = userDoc.data();
+      if (user.displayName && user.displayName !== existingData.displayName) {
+        await updateDoc(userDocRef, {
+          displayName: user.displayName
         });
-      } else {
-        // Update photoURL if changed (for existing users)
-        const existingData = userDoc.data();
-        if (user.photoURL && user.photoURL !== existingData.photoURL) {
-          await updateDoc(userDocRef, {
-            photoURL: user.photoURL,
-            displayName: user.displayName || existingData.displayName
-          });
-        }
       }
-    } catch (err) {
-      setError(err.message.replace('Firebase: ', ''));
     }
-  };
+  } catch (err) {
+    setError(err.message.replace('Firebase: ', ''));
+  }
+};
+
+
 
   const handleAnonymousLogin = async () => {
     setError('');
@@ -427,7 +428,11 @@ const Header = ({ setPage }) => {
 
   // ✅ FIX: Use currentUser from context which updates via real-time listener
   const displayName = currentUser?.displayName || 'User';
-  const photoURL = currentUser?.photoURL || `https://api.dicebear.com/8.x/avataaars/svg?seed=${currentUser?.uid}`;
+  const photoURL =
+  currentUser?.photoURL && currentUser.photoURL.trim()
+    ? currentUser.photoURL
+    : `https://api.dicebear.com/8.x/avataaars/svg?seed=${currentUser?.uid}`;
+
 
   return (
     <header className="bg-gray-800 p-4 flex justify-between items-center shadow-md fixed top-0 left-0 right-0 z-10">
@@ -1165,7 +1170,11 @@ const ProfilePage = ({ setPage, setSelectedHistoryItem }) => {
   };
 
   const displayName = currentUser?.displayName || 'User';
-  const photoURL = currentUser?.photoURL || `https://api.dicebear.com/8.x/avataaars/svg?seed=${currentUser?.uid}`;
+  const photoURL =
+  currentUser?.photoURL && currentUser.photoURL.trim()
+    ? currentUser.photoURL
+    : `https://api.dicebear.com/8.x/avataaars/svg?seed=${currentUser?.uid}`;
+
 
   return (
     <div className="min-h-screen bg-gray-900 p-4 pt-24 pb-12 text-white">
