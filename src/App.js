@@ -578,7 +578,7 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 className={inputStyle}
-                placeholder="e.g., The Roman Empire"
+                placeholder="e.g., Python Basics"
               />
             </div>
           ) : (
