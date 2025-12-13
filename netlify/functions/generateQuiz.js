@@ -8,7 +8,8 @@ const fetch = require('node-fetch');
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 // *** USE THE USER-VERIFIED WORKING ENDPOINT ***
 const API_VERSION = 'v1beta';
-const GEMINI_MODEL_NAME = 'gemini-2.5-flash-preview-05-20';
+const GEMINI_MODEL_NAME = 'gemini-2.5-flash';
+
 // *** ***
 const API_TIMEOUT = 60000; // 60 seconds
 const MAX_QUESTIONS = 100; const MAX_OPTIONS = 10;
@@ -93,7 +94,8 @@ exports.handler = async (event) => {
     console.log("[INFO] API Key found.");
 
     // --- USE THE USER-VERIFIED WORKING URL ---
-    const apiUrl = `https://generativelanguage.googleapis.com/${API_VERSION}/models/${GEMINI_MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`;
+const apiUrl =
+  `https://generativelanguage.googleapis.com/${API_VERSION}/models/${GEMINI_MODEL_NAME}:generateContent?key=${process.env.GEMINI_API_KEY}`;
     console.log("[INFO] Using API URL:", apiUrl);
 
     try {

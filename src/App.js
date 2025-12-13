@@ -455,9 +455,8 @@ const Header = ({ setPage }) => {
     </header>
   );
 };
-
 /* ═══════════════════════════════════════════════════════════
-   7. QUIZ FORGE PAGE (No changes needed - keeping original)
+   7. QUIZ FORGE PAGE (Fixed Input Validation)
    ═══════════════════════════════════════════════════════════ */
 
 const QuizForge = ({ setPage, setQuizConfig }) => {
@@ -491,7 +490,12 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
     setLoading(true);
     setError('');
 
-    const timerSettings = { mode: timerMode, time: timeValue };
+    // Ensure valid numbers before submitting, just in case
+    const safeNumQuestions = !numQuestions ? 10 : Math.max(1, Math.min(100, Number(numQuestions)));
+    const safeNumOptions = !numOptions ? 4 : Math.max(2, Math.min(10, Number(numOptions)));
+    const safeTimeValue = !timeValue ? (timerMode === 'perQuestion' ? 30 : 10) : Number(timeValue);
+
+    const timerSettings = { mode: timerMode, time: safeTimeValue };
     let requestOptions;
 
     if (mode === 'file') {
@@ -502,7 +506,7 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
       }
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('config', JSON.stringify({ instruction, numQuestions, numOptions, difficulty }));
+      formData.append('config', JSON.stringify({ instruction, numQuestions: safeNumQuestions, numOptions: safeNumOptions, difficulty }));
       requestOptions = { method: 'POST', body: formData };
     } else {
       if (!topic) {
@@ -513,7 +517,7 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
       requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic, numQuestions, numOptions, difficulty }),
+        body: JSON.stringify({ topic, numQuestions: safeNumQuestions, numOptions: safeNumOptions, difficulty }),
       };
     }
 
@@ -609,25 +613,29 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <div>
               <label htmlFor="questions" className="block text-gray-300 mb-2 font-medium">No. of Questions (1-100)</label>
+              {/* ✅ FIXED: onChange now allows typing; onBlur handles limits */}
               <input
                 type="number"
                 id="questions"
                 min="1"
                 max="100"
                 value={numQuestions}
-                onChange={(e) => setNumQuestions(Math.max(1, Math.min(100, Number(e.target.value))))}
+                onChange={(e) => setNumQuestions(e.target.value)}
+                onBlur={() => setNumQuestions(prev => !prev ? 10 : Math.max(1, Math.min(100, Number(prev))))}
                 className={inputStyle}
               />
             </div>
             <div>
               <label htmlFor="options" className="block text-gray-300 mb-2 font-medium">Choices per Question (2-10)</label>
+              {/* ✅ FIXED: onChange now allows typing; onBlur handles limits */}
               <input
                 type="number"
                 id="options"
                 min="2"
                 max="10"
                 value={numOptions}
-                onChange={(e) => setNumOptions(Math.max(2, Math.min(10, Number(e.target.value))))}
+                onChange={(e) => setNumOptions(e.target.value)}
+                onBlur={() => setNumOptions(prev => !prev ? 4 : Math.max(2, Math.min(10, Number(prev))))}
                 className={inputStyle}
               />
             </div>
@@ -667,12 +675,14 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
             {timerMode === 'perQuestion' && (
               <div className="mt-2 animate-fade-in">
                 <label htmlFor="timePer" className="block text-gray-400 text-sm mb-1">Seconds per question (min 10)</label>
+                {/* ✅ FIXED: onChange now allows typing; onBlur handles limits */}
                 <input
                   type="number"
                   id="timePer"
                   min="10"
                   value={timeValue}
-                  onChange={(e) => setTimeValue(Math.max(10, Number(e.target.value)))}
+                  onChange={(e) => setTimeValue(e.target.value)}
+                  onBlur={() => setTimeValue(prev => !prev ? 30 : Math.max(10, Number(prev)))}
                   className={inputStyle}
                 />
               </div>
@@ -681,12 +691,14 @@ const QuizForge = ({ setPage, setQuizConfig }) => {
             {timerMode === 'total' && (
               <div className="mt-2 animate-fade-in">
                 <label htmlFor="totalTime" className="block text-gray-400 text-sm mb-1">Total minutes for quiz (min 1)</label>
+                {/* ✅ FIXED: onChange now allows typing; onBlur handles limits */}
                 <input
                   type="number"
                   id="totalTime"
                   min="1"
                   value={timeValue}
-                  onChange={(e) => setTimeValue(Math.max(1, Number(e.target.value)))}
+                  onChange={(e) => setTimeValue(e.target.value)}
+                  onBlur={() => setTimeValue(prev => !prev ? 10 : Math.max(1, Number(prev)))}
                   className={inputStyle}
                 />
               </div>
